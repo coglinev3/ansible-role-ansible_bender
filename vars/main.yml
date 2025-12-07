@@ -3,6 +3,56 @@
 
 # Linux Mint Release Matrix
 linux_mint_releases:
+  zara:
+    version: 22.2
+    ubuntu_distribution_release: noble
+    ubuntu_distribution_version: 24.04
+    ubuntu_distribution_major_version: 24
+  xia:
+    version: 22.1
+    ubuntu_distribution_release: noble
+    ubuntu_distribution_version: 24.04
+    ubuntu_distribution_major_version: 24
+  wilma:
+    version: 22
+    ubuntu_distribution_release: noble
+    ubuntu_distribution_version: 24.04
+    ubuntu_distribution_major_version: 24
+  virginia:
+    version: 21.3
+    ubuntu_distribution_release: jammy
+    ubuntu_distribution_version: 22.04
+    ubuntu_distribution_major_version: 22
+  victoria:
+    version: 21.2
+    ubuntu_distribution_release: jammy
+    ubuntu_distribution_version: 22.04
+    ubuntu_distribution_major_version: 22
+  vera:
+    version: 21.1
+    ubuntu_distribution_release: jammy
+    ubuntu_distribution_version: 22.04
+    ubuntu_distribution_major_version: 22
+  vanessa:
+    version: 21
+    ubuntu_distribution_release: jammy
+    ubuntu_distribution_version: 22.04
+    ubuntu_distribution_major_version: 22
+  una:
+    version: 20.3
+    ubuntu_distribution_release: focal
+    ubuntu_distribution_version: 20.04
+    ubuntu_distribution_major_version: 20
+  uma:
+    version: 20.2
+    ubuntu_distribution_release: focal
+    ubuntu_distribution_version: 20.04
+    ubuntu_distribution_major_version: 20
+  ulyssa:
+    version: 20.1
+    ubuntu_distribution_release: focal
+    ubuntu_distribution_version: 20.04
+    ubuntu_distribution_major_version: 20
   ulyana:
     version: 20
     ubuntu_distribution_release: focal

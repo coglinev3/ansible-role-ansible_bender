@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: 'coglinev3.ansible_bender'
 
       - name: Run ansible-lint
-        uses: ansible-actions/ansible-lint-action@v1.0.2
+        uses: ansible-actions/ansible-lint-action@v1.1.0
         with:
           target: "./"
           required_collections: 'community.general'
@@ -52,14 +52,13 @@ jobs:
 
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: 'coglinev3.ansible_bender'
 
       - name: Install Molecule
         run: >-
-          python3 -m pip install --user urllib3
-          ansible
+          python3 -m pip install --user ansible
           molecule
           molecule-plugins[docker]
 
