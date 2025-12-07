@@ -2,27 +2,27 @@
 # file: roles/ansible-bender/tasks/configure-podman.yml
 
 - name: Ensure directory /etc/containers exists
-  become: "true"
+  become: true
   ansible.builtin.file:
     path: /etc/containers
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Configure container registry
-  become: "true"
+  become: true
   ansible.builtin.template:
     src: registries.conf.j2
     dest: /etc/containers/registries.conf
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   tags:
     - config
 
 - name: Configure /etc/subuid for rootless mode
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/subuid
     regexp: '^{{ item }}:900000:65536'
@@ -30,13 +30,13 @@
     create: "yes"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   loop: "{{ ab_users | flatten(levels=1) }}"
   tags:
     - config
 
 - name: Configure /etc/subgid for rootless mode
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/subgid
     regexp: '^{{ item }}:900000:65536'
@@ -44,13 +44,13 @@
     create: "yes"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   loop: "{{ ab_users | flatten(levels=1) }}"
   tags:
     - config
 
 - name: Configure ping group range
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/sysctl.d/60-ping_group_range.conf
     regexp: '^net.ipv4.ping_group_range'
@@ -59,7 +59,7 @@
     create: "yes"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   when: >
     not ( ansible_distribution == "Ubuntu" and
     ansible_distribution_major_version == "16")
@@ -68,7 +68,7 @@
     - config
 
 - name: Enable user namespaces
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/sysctl.d/00-local-userns.conf
     regexp: '^kernel.unprivileged_userns_clone'
@@ -77,14 +77,14 @@
     create: "yes"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   when: ansible_distribution == "Debian"
   notify: Sysctl_user_namespace
   tags:
     - config
 
 - name: Configure max user namespaces
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/sysctl.d/60-user_namespaces.conf
     regexp: '^user.max_user_namespaces'
@@ -94,7 +94,7 @@
     create: "yes"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   when: >
     not ( ansible_distribution == "Ubuntu" and
     ansible_distribution_major_version == "16")

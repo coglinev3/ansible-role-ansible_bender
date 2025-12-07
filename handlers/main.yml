@@ -2,15 +2,17 @@
 # file: roles/ansible-bender/handlers/main.yml
 
 - name: Sysctl_ping
-  become: "true"
+  become: true
   ansible.builtin.command: sysctl -p /etc/sysctl.d/60-ping_group_range.conf
+  changed_when: false
 
 - name: Sysctl_max_user_namespace
-  become: "true"
+  become: true
   ansible.builtin.command: sysctl -p /etc/sysctl.d/60-user_namespaces.conf
+  changed_when: false
 
 - name: Sysctl_user_namespace
-  become: "true"
+  become: true
   ansible.builtin.service:
     name: procps
     state: restarted

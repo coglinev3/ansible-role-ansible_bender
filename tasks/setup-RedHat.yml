@@ -2,6 +2,6 @@
 # file: roles/ansible-bender/tasks/setup-RedHat.yml
 
 - name: "RedHat: Update cache."
-  become: "true"
+  become: true
   ansible.builtin.dnf:
     update_cache: true

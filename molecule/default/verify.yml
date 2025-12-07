@@ -13,7 +13,7 @@
     - name: Check podman version
       ansible.builtin.assert:
         that: podman_version.changed
-        fail_msg: "podman is not installed properly" 
+        fail_msg: "podman is not installed properly"
         success_msg: "{{ podman_version.stdout }} installed correctly"
 
     - name: "Get buildah version"
@@ -25,7 +25,7 @@
     - name: Check buildah version
       ansible.builtin.assert:
         that: buildah_version.changed
-        fail_msg: "buildah is not installed properly" 
+        fail_msg: "buildah is not installed properly"
         success_msg: "{{ buildah_version.stdout }} installed correctly"
 
 #    - name: "Get podman informations"
@@ -47,5 +47,5 @@
     - name: Check ansible-bender version
       ansible.builtin.assert:
         that: bender_version.changed
-        fail_msg: "ansible-bender is not installed properly" 
+        fail_msg: "ansible-bender is not installed properly"
         success_msg: "ansible-bender version {{ bender_version.stdout }} installed correctly"

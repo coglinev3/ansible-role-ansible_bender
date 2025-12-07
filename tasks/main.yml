@@ -5,10 +5,10 @@
   ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
       skip: true
   tags: vars
 
@@ -17,14 +17,14 @@
   ansible.builtin.include_tasks: "{{ item }}"
   with_first_found:
     - files:
-        - "repo-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "repo-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-        - "repo-{{ ansible_distribution }}.yml"
-        - "repo-{{ ansible_os_family }}.yml"
+        - "repo-{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_major_version }}.yml"
+        - "repo-{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml"
+        - "repo-{{ ansible_facts.distribution }}.yml"
+        - "repo-{{ ansible_facts.os_family }}.yml"
       skip: true
 
 - name: "Include OS specific setup."
-  ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks: "setup-{{ ansible_facts.os_family }}.yml"
 
 - name: Setup tasks.
   ansible.builtin.include_tasks: setup.yml

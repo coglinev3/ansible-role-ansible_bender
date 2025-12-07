@@ -2,11 +2,11 @@
 # file: roles/ansible_bender/tasks/repo-Debian-10.yml
 
 - name: Install GNU privacy guard
-  become: "true"
+  become: true
   ansible.builtin.apt:
     name: gnupg2
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: "Debian: Set release for apt repository"
   ansible.builtin.set_fact:
@@ -22,7 +22,7 @@
   when: ansible_distribution == "Linux Mint"
 
 # - name: Install backports repository
-#   become: "true"
+#   become: true
 #   template:
 #     force: "no"
 #     src: backports-repo.j2
@@ -32,40 +32,39 @@
 #     mode: 0644
 
 - name: Add line for backports repository to sources.list
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/apt/sources.list
     regexp: '^deb http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main'
     line: 'deb http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main'
     create: "yes"
-    mode: 0644
+    mode: "0644"
     owner: root
     group: root
 
 - name: Install repository for buildah and podman
-  become: "true"
+  become: true
   ansible.builtin.template:
     force: "no"
     src: alvistack-apt-repo.j2
     dest: /etc/apt/sources.list.d/alvistack-project.list
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Add Apt key
-  become: "true"
+  become: true
   ansible.builtin.apt_key:
     url: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/{{ ab_distribution }}_{{ ab_distribution_version }}/Release.key"
     state: present
 
 - name: Update Apt cache
-  become: "true"
+  become: true
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Update the repository cache and install libseccomp2 using backports release
-  become: "true"
+  become: true
   ansible.builtin.apt:
     name: libseccomp2
-    state: latest
     default_release: "{{ ansible_distribution_release }}-backports"

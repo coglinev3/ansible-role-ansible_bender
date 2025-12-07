@@ -2,61 +2,61 @@
 # file: roles/ansible_bender/tasks/configure-ansible.yml
 
 - name: "Ensure directory /etc/ansible exists."
-  become: "true"
+  become: true
   ansible.builtin.file:
     path: /etc/ansible
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
   tags:
     - config
 
 - name: Create Ansible configuration file
-  become: "true"
+  become: true
   ansible.builtin.template:
     force: "no"
     src: ansible.cfg
     dest: /etc/ansible/ansible.cfg
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   tags:
     - config
 
 - name: Create Ansible inventory file
-  become: "true"
+  become: true
   ansible.builtin.template:
     force: "no"
     src: hosts.j2
     dest: /etc/ansible/hosts
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   tags:
     - config
 
 - name: Force color mode for Ansible
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/environment
     regexp: '^export ANSIBLE_FORCE_COLOR'
     line: 'export ANSIBLE_FORCE_COLOR=1'
     create: "yes"
-    mode: 0644
+    mode: "0644"
     owner: root
     group: root
   tags:
     - config
 
 - name: Add /usr/local/(bin,sbin) to PATH
-  become: "true"
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/environment
     regexp: '^PATH'
     line: 'PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
     create: "yes"
-    mode: 0644
+    mode: "0644"
     owner: root
     group: root
   when: ansible_os_family == 'RedHat'
