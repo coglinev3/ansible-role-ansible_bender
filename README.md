@@ -26,7 +26,6 @@ The supported Linux distributions for this role are:
 * Debian 11 (Bullseye),
 * Debian 12 (Bookworm),
 * Linux Mint 20 (Ulyana),
-* Ubuntu 20.04 LTS (Focal Fossa),
 * Ubuntu 22.04 LTS (Jammy Jellyfish).
 
 
