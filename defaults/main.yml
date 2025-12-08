@@ -1,8 +1,16 @@
 ---
 # file: roles/ansible-bender/defaults/main.yml
 
+# use admin rights with sudo or not
+ab_become: true
+
+# state for installed packages: absent | present | latest
+ab_package_state: latest
+
 # ansible-bender needs python3.6 or higher
 ab_dependencies:
+  - python3-pip
+  - python3-virtualenv
   - buildah
   - podman
 

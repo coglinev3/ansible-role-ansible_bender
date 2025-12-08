@@ -1,6 +1,15 @@
 ---
 # file: roles/ansible-bender/tasks/setup.yml
 
+- name: Ensure the crb repository is enabled
+  become: true
+  community.general.dnf_config_manager:
+    name: crb
+    state: enabled
+  when:
+    - ansible_facts.os_family == "RedHat"
+    - ansible_facts.distribution_major_version | int == 9
+
 - name: "Install dependencies for ansible-bender."
   become: true
   ansible.builtin.package:
@@ -17,7 +26,8 @@
     name: "{{ ab_python_dependencies }}"
     state: "{{ ab_python_package_state }}"
     umask: "0022"
-    executable: pip3
+    virtualenv: /usr/local
+    virtualenv_site_packages: true
   when: not ansible_check_mode
   environment:
     TMPDIR: /var/tmp
@@ -30,6 +40,7 @@
     name: ansible-bender
     version: "{{ ab_version | default(omit) }}"
     umask: "0022"
-    executable: pip3
+    virtualenv: /usr/local
+    virtualenv_site_packages: true
   tags:
     - install

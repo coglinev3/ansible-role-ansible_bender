@@ -20,11 +20,11 @@ platforms:
     command: ${MOLECULE_DISTRO_CMD:-""}
 provisioner:
   name: ansible
-  inventory:
-    host_vars:
-      # settings for the platform instance named 'instance'
-      instance:
-        ansible_user: ansible
+#  inventory:
+#    host_vars:
+#      # settings for the platform instance named 'instance'
+#      instance:
+#        ansible_user: ansible
 verifier:
   name: ansible
 scenario:

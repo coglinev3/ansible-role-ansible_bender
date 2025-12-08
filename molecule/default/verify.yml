@@ -2,8 +2,13 @@
 # file: roles/ansible_bender/molecule/default/verify.yml
 
 - name: Verify
+  become: false
   hosts: all
   tasks:
+    - name: "Detect OS."
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts.distribution }} {{ ansible_facts.distribution_version }}"
+
     - name: "Get podman version"
       ansible.builtin.command: podman --version
       register: podman_version
@@ -27,16 +32,6 @@
         that: buildah_version.changed
         fail_msg: "buildah is not installed properly"
         success_msg: "{{ buildah_version.stdout }} installed correctly"
-
-#    - name: "Get podman informations"
-#      command: >
-#        podman
-#        --storage-driver=vfs
-#        info
-#      changed_when: false
-#      register: podman_info
-#    - debug:
-#        var: podman_info
 
     - name: "Get ansible-bender version"
       ansible.builtin.command: ansible-bender --version

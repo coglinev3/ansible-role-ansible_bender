@@ -1,7 +1,17 @@
 ---
 # file: roles/ansible-bender/tasks/setup-RedHat.yml
 
-- name: "RedHat: Update cache."
+- name: "RedHat: Fix /etc/shadow"
+  ansible.builtin.raw: chmod 0640 /etc/shadow
+  changed_when: false
+
+- name: Reload sudoers
+  ansible.builtin.raw: sudo -l
+  changed_when: false
+
+- name: "RHEL: Install EPEL Repository"
   become: true
   ansible.builtin.dnf:
+    name: epel-release
+    state: present
     update_cache: true

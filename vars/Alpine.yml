@@ -1,0 +1,10 @@
+---
+# file: roles/ansible_bender/vars/Alpine.yml
+
+# dependencies for Alpine
+ab_dependencies:
+  - py3-pip
+  - py3-virtualenv
+  - py3-yaml
+  - buildah
+  - podman

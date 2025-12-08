@@ -16,3 +16,20 @@
   ansible.builtin.service:
     name: procps
     state: restarted
+
+- name: "Alpine: Get all files from repository cache."
+  ansible.builtin.find:
+    paths: /var/cache/apk
+    patterns: "*"
+  register: files_to_delete
+  listen: remove apk_cache
+
+- name: "Alpine: Remove repository cache."
+  become: "{{ ab_become }}"
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ files_to_delete.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  listen: remove apk_cache

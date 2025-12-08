@@ -4,3 +4,10 @@
 ab_python_packges:
   - ansible
   - selinux
+
+# ansible-bender needs python3.9 or higher
+ab_dependencies:
+  - python3-pip
+  - python3-virtualenv
+  - buildah
+  - podman
