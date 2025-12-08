@@ -21,7 +21,6 @@ The supported Linux distributions for this role are:
 * Alpine Linux 3.17,
 * Alpine Linux 3.18,
 * Alpine Linux 3.19,
-* Enterprise Linux 8, 
 * Enterprise Linux 9, 
 * Debian 11 (Bullseye),
 * Debian 12 (Bookworm),
