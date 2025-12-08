@@ -15,8 +15,6 @@ brings to orchestrating your infrastructure can now be applied to the image
 build process.
 
 The supported Linux distributions for this role are:
-* Alpine Linux 3.14,
-* Alpine Linux 3.15,
 * Alpine Linux 3.16,
 * Alpine Linux 3.17,
 * Alpine Linux 3.18,

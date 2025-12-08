@@ -37,8 +37,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro_version: 'alpine-3.14'
-          - distro_version: 'alpine-3.15'
           - distro_version: 'alpine-3.16'
           - distro_version: 'alpine-3.17'
           - distro_version: 'alpine-3.18'
