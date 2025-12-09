@@ -4,7 +4,10 @@
 
 Are you tired of building containers with Dockerfiles?
 
-This role installs [ansible-bender](https://github.com/ansible-community/ansible-bender), a tool which bends containers using Ansible playbooks and turns them into container images.
+This role installs
+[ansible-bender](https://github.com/ansible-community/ansible-bender), a tool
+which bends containers using Ansible playbooks and turns them into container
+images.
 
 With ansible-bender, you no longer have to build and configure containers
 differently than you do traditional virtual machines or bare-metal systems.
@@ -26,22 +29,14 @@ The supported Linux distributions for this role are:
 * Ubuntu 22.04 LTS (Jammy Jellyfish).
 
 
----
-**ΝOTE**
-
-The [rootless mode](https://github.com/containers/libpod/blob/master/README.md#rootless) for Podman requires the [newuidmap](https://github.com/containers/libpod/blob/master/troubleshooting.md#9-newuidmap-missing-when-running-rootless-podman-commands) program to be installed. Enterprise Linux 7 (RHEL 7 / CentOS 7) supports this only since version 7.7.
-
----
-
-
 ## Requirements
 
 Ansible-bender requires a few binaries to be present on your host system:
 
+* Python 3.9 or later
+* Ansible 
 * Buildah
 * Podman
-* Python 3.6 or later (python 3.5 or earlier are not supported and known not to be working)
-* Ansible (***Ansible needs to be built against python 3***)
 
 All requirements are installed with this role.
 
@@ -50,36 +45,40 @@ All requirements are installed with this role.
 Available variables are listed below, along with default values (see defaults/main.yml):
 
 ```yml
+# use admin rights with sudo or not
+ab_become: true
 
-# dependencies for ansible-bender (like buildah, podman and python3.6 or higher)
+# state for installed packages: absent | present | latest
+ab_package_state: latest
+
+# ansible-bender needs python3.6 or higher
 ab_dependencies:
+  - python3-pip
+  - python3-virtualenv
   - buildah
   - podman
-  - python3
-  - python3-pip
-  - python3-setuptools
-  - python3-software-properties
-  - python3-virtualenv
-  - procps
-  - runc
-  - slirp4netns
 
-# package state for dependencies: ( present ) | latest 
 ab_dependencies_package_state: present
 
-# Packages that are installed with the Python3 installer pip3.
-ab_python_packges:
-  - wheel
+ab_python_dependencies:
   - ansible
-  - ansible-bender
 
-# package state for python packages: ( present ) | latest
-ab_python_packge_state: present
+ab_python_package_state: present
 
-# comma separated list of container registries
-ab_container_search_registry: "'docker.io', 'registry.fedoraproject.org', 'quay.io', 'registry.access.redhat.com', 'registry.centos.org'"
+# Ansible-bender version. If empty, defaults to latest.
+ab_version: ''
 
-# a list of users which can use the rootless mode:
+# comma separated list of registries
+ab_container_search_registry: >-
+  'docker.io',
+  'registry.fedoraproject.org',
+  'quay.io',
+  'registry.access.redhat.com',
+  'registry.centos.org'
+
+ab_repo_prefix: ""
+
+# a list user which can use the rootless mode:
 ab_users: []
 ```
 
