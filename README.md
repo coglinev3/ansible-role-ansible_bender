@@ -178,7 +178,7 @@ If you get an answer with "404 Not Found", nginx will work fine. Nginx informs y
 
 ## Version
 
-Release: 1.6.0
+Release: 1.7.0
 
 ## License
 
