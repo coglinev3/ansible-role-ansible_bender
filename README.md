@@ -27,7 +27,8 @@ The supported Linux distributions for this role are:
 * Debian 12 (Bookworm),
 * Debian 13 (Trixie),
 * Linux Mint 20 (Ulyana),
-* Ubuntu 22.04 LTS (Jammy Jellyfish).
+* Ubuntu 22.04 LTS (Jammy Jellyfish),
+* Ubuntu 24.04 LTS (Noble Numbat).
 
 
 ## Requirements
